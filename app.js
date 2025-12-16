@@ -46,7 +46,8 @@ function setMode(m) {
     mode = m;
     document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
     event.target.classList.add('active');
-    correctCount = 0; wrongCount = 0;
+    correctCount = 0;
+    wrongCount = 0;
     applyFilters();
 }
 
@@ -109,11 +110,17 @@ function submitAnswer() {
 }
 
 function prevQuestion() {
-    if (currentIndex > 0) { currentIndex--; renderQuestion(); }
+    if (currentIndex > 0) {
+        currentIndex--;
+        renderQuestion();
+    }
 }
 
 function nextQuestion() {
-    if (currentIndex < filteredQuestions.length - 1) { currentIndex++; renderQuestion(); }
+    if (currentIndex < filteredQuestions.length - 1) {
+        currentIndex++;
+        renderQuestion();
+    }
 }
 
 function updateStats() {
