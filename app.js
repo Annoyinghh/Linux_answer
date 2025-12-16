@@ -126,5 +126,46 @@ function updateStats() {
     document.getElementById('progress').style.width = filteredQuestions.length ? ((currentIndex + 1) / filteredQuestions.length * 100) + '%' : '0%';
 }
 
+function searchQuestions() {
+    const keyword = document.getElementById('searchInput').value.trim().toLowerCase();
+    const resultsDiv = document.getElementById('searchResults');
+    if (!keyword) {
+        resultsDiv.style.display = 'none';
+        return;
+    }
+    const matches = questions.filter(q => 
+        q.question.toLowerCase().includes(keyword) || 
+        q.options.some(opt => opt.toLowerCase().includes(keyword))
+    );
+    if (matches.length === 0) {
+        resultsDiv.innerHTML = '<div class="search-item"><div class="q-text">未找到相关题目</div></div>';
+    } else {
+        resultsDiv.innerHTML = matches.slice(0, 20).map(q => `
+            <div class="search-item" onclick="jumpToQuestion(${q.id})">
+                <div class="q-chapter">${q.chapter} - 第${q.id}题</div>
+                <div class="q-text">${q.question}</div>
+                <div class="q-answer">答案: ${String.fromCharCode(65 + q.answer)} - ${q.options[q.answer]}</div>
+            </div>
+        `).join('');
+    }
+    resultsDiv.style.display = 'block';
+}
+
+function jumpToQuestion(id) {
+    const idx = filteredQuestions.findIndex(q => q.id === id);
+    if (idx !== -1) {
+        currentIndex = idx;
+        renderQuestion();
+    }
+    document.getElementById('searchInput').value = '';
+    document.getElementById('searchResults').style.display = 'none';
+}
+
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-box')) {
+        document.getElementById('searchResults').style.display = 'none';
+    }
+});
+
 initChapterFilter();
 renderQuestion();
