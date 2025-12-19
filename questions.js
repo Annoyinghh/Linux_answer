@@ -413,9 +413,9 @@ const questions = [
     "question": "若你想知道某个特定文件属于哪个软件包，应使用下列哪个命令？",
     "options": [
       "rpm -a",
-      "rpm -qf <文件路径>",
-      "rpm -i <文件路径>",
-      "rpm -Uvh <文件路径>"
+      "rpm -qf &lt;文件路径&gt;",
+      "rpm -i &lt;文件路径&gt;",
+      "rpm -Uvh &lt;文件路径&gt;"
     ],
     "answer": 1
   },
@@ -628,9 +628,9 @@ const questions = [
     "question": "管理员希望设置一个在明天上午10点整执行一次的系统备份脚本 /backup.sh，应该使用以下哪个命令？",
     "options": [
       "cron 10:00 tomorrow /backup.sh",
-      "at 10:00 tomorrow < /backup.sh",
-      "at 10:00 tomorrow << EOF /backup.sh EOF",
-      "at 10:00 tomorrow << EOF bash /backup.sh EOF"
+      "at 10:00 tomorrow &lt; /backup.sh",
+      "at 10:00 tomorrow &lt;&lt; EOF /backup.sh EOF",
+      "at 10:00 tomorrow &lt;&lt; EOF bash /backup.sh EOF"
     ],
     "answer": 1,
     "id": 53
@@ -759,9 +759,9 @@ const questions = [
     "chapter": "八、Shell脚本基础",
     "question": "以下哪个符号用于将命令输出重定向到文件（覆盖原有内容）？",
     "options": [
-      ">>",
-      ">",
-      "<",
+      "&gt;&gt;",
+      "&gt;",
+      "&lt;",
       "|"
     ],
     "answer": 1,
@@ -1179,10 +1179,10 @@ const questions = [
     "chapter": "十一、Apache HTTP服务",
     "question": "在一台服务器上配置多个基于不同IP地址的网站，需要使用以下哪种配置结构？",
     "options": [
-      "<Directory> ... </Directory>",
-      "<VirtualHost IP地址:端口> ... </VirtualHost>",
-      "<Location> ... </Location>",
-      "<IfModule> ... </IfModule>"
+      "&lt;Directory&gt; ... &lt;/Directory&gt;",
+      "&lt;VirtualHost IP地址:端口&gt; ... &lt;/VirtualHost&gt;",
+      "&lt;Location&gt; ... &lt;/Location&gt;",
+      "&lt;IfModule&gt; ... &lt;/IfModule&gt;"
     ],
     "answer": 1,
     "id": 99
