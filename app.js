@@ -75,21 +75,15 @@ function renderQuestion() {
 
 function selectOption(index) {
     if (answered) return;
-    selectedAnswer = index;
-    document.querySelectorAll('.option').forEach((opt, i) => {
-        opt.classList.toggle('selected', i === index);
-    });
-}
-
-function submitAnswer() {
-    if (selectedAnswer === null || answered) return;
     answered = true;
+    selectedAnswer = index;
     const q = filteredQuestions[currentIndex];
-    const correct = selectedAnswer === q.answer;
+    const correct = index === q.answer;
     const options = document.querySelectorAll('.option');
+    
     options[q.answer].classList.add('correct');
     if (!correct) {
-        options[selectedAnswer].classList.add('wrong');
+        options[index].classList.add('wrong');
         wrongCount++;
         if (!wrongQuestions.includes(q.id)) {
             wrongQuestions.push(q.id);
@@ -100,12 +94,21 @@ function submitAnswer() {
         wrongQuestions = wrongQuestions.filter(id => id !== q.id);
         localStorage.setItem('wrongQuestions', JSON.stringify(wrongQuestions));
     }
+    
     const result = document.getElementById('result');
     result.style.display = 'block';
     result.className = 'result ' + (correct ? 'correct' : 'wrong');
-    result.textContent = correct ? '✓ 回答正确！' : `✗ 回答错误！正确答案是 ${String.fromCharCode(65 + q.answer)}`;
-    document.getElementById('submitBtn').textContent = '已提交';
+    result.textContent = correct ? '✓ 回答正确！2秒后自动下一题...' : `✗ 回答错误！正确答案是 ${String.fromCharCode(65 + q.answer)}`;
     updateStats();
+    
+    if (correct) {
+        setTimeout(() => {
+            if (currentIndex < filteredQuestions.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            }
+        }, 2000);
+    }
 }
 
 function prevQuestion() {
