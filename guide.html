@@ -113,6 +113,17 @@
                 <div class="code-block">whoami</div>
                 <p>退出 xzx 账户，返回 root</p>
                 <div class="code-block">exit</div>
+                <p><strong>创建用户目录并设置权限：</strong></p>
+                <div class="code-block"># 1. 重新创建用户目录（因为新硬盘是空的）
+mkdir -p /home/xzx
+
+# 2. 【关键步骤】将目录的所有权交给 xzx 用户
+# 语法：chown 用户名:组名 目录路径
+chown xzx:xzx /home/xzx
+
+# 3. (可选) 设置只有用户自己能看，或者允许其他人读取
+# (为了FTP测试方便可以设为755)
+chmod 755 /home/xzx</div>
                 <div class="note">📸 此处需要截图显示用户切换</div>
             </div>
 
