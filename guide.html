@@ -216,24 +216,7 @@ systemctl restart vsftpd</div>
 
             <h3><span class="step-num">12</span>本地账户下载测试</h3>
             <div class="step">
-                <p><strong>A. 服务器端准备数据：</strong></p>
-                <div class="code-block"># 1. 重新创建用户目录（因为新硬盘是空的）
-mkdir -p /home/xzx
-
-# 2. 【关键步骤】将目录的所有权交给 xzx 用户
-# 语法：chown 用户名:组名 目录路径
-chown xzx:xzx /home/xzx
-
-# 3. (可选) 设置只有用户自己能看，或者允许其他人读取
-# (为了FTP测试方便可以设为755)
-chmod 755 /home/xzx
-
-# 4. 准备测试文件
-echo "Data for xzx download test" > /home/xzx/download_test.txt
-
-# 5. 赋予读取权限
-chmod 644 /home/xzx/download_test.txt</div>
-                <p><strong>B. 客户端下载操作 (在 stu 机器上)：</strong></p>
+                <p><strong>A. 客户端下载操作 (在 stu 机器上)：</strong></p>
                 <div class="code-block"># 连接服务器 (假设 IP 为 192.168.x.x)
 ftp 192.168.x.x
 Name: xzx
