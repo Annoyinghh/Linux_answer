@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linux 操作指南</title>
+    <title>Linux 操作指南 - 最终修正版</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Microsoft YaHei', sans-serif; background: #f5f5f5; line-height: 1.8; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-        h1 { text-align: center; color: #333; margin: 30px 0 20px; font-size: 32px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        h1 { text-align: center; color: #333; margin: 30px 0 10px; font-size: 32px; }
+        .env-info { text-align: center; background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; }
         h2 { color: #667eea; border-left: 4px solid #667eea; padding-left: 15px; margin: 25px 0 15px; font-size: 24px; }
         h3 { color: #555; margin: 15px 0 10px; font-size: 18px; }
         .section { background: #fff; border-radius: 8px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
@@ -17,7 +18,7 @@
         code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; color: #d63384; }
         .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 6px; overflow-x: auto; margin: 10px 0; font-family: 'Courier New', monospace; font-size: 14px; line-height: 1.5; }
         .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 15px; margin: 10px 0; border-radius: 4px; }
-        .warning { background: #f8d7da; border-left: 4px solid #dc3545; padding: 12px 15px; margin: 10px 0; border-radius: 4px; color: #721c24; }
+        .warning { background: #f8d7da; border-left: 4px solid #dc3545; padding: 12px 15px; margin: 10px 0; border-radius: 4px; color: #721c24; font-weight: bold; }
         .success { background: #d4edda; border-left: 4px solid #28a745; padding: 12px 15px; margin: 10px 0; border-radius: 4px; color: #155724; }
         .toc { background: #f0f7ff; border: 1px solid #667eea; border-radius: 8px; padding: 20px; margin-bottom: 30px; }
         .toc h3 { margin-top: 0; }
@@ -28,11 +29,15 @@
         .back-to-quiz { text-align: center; margin: 30px 0; }
         .back-to-quiz a { display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; padding: 12px 30px; border-radius: 25px; text-decoration: none; transition: all 0.3s; }
         .back-to-quiz a:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102,126,234,0.4); }
+        .screenshot { color: #d63384; font-weight: bold; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🐧 Linux 操作指南</h1>
+        <h1>🐧 Linux 操作指南 - 最终修正版</h1>
+        <div class="env-info">
+            <strong>实验环境参数：</strong> 用户名：xzx | 学号：2420601539 | 后缀(XX)：39 | IP：192.168.126.128
+        </div>
         
         <div class="toc">
             <h3>📋 目录</h3>
@@ -40,7 +45,8 @@
                 <li><a href="#part1">第一部分：文件与目录操作</a></li>
                 <li><a href="#part2">第二部分：用户管理与查找</a></li>
                 <li><a href="#part3">第三部分：磁盘管理</a></li>
-                <li><a href="#part4">第四部分：网络与FTP服务</a></li>
+                <li><a href="#part4">第四部分：网络与FTP配置</a></li>
+                <li><a href="#part5">第五部分：本地用户下载测试</a></li>
             </ul>
         </div>
 
@@ -50,50 +56,40 @@
             
             <h3><span class="step-num">1</span>进入 /home 并创建 xzxdata 目录</h3>
             <div class="step">
-                <p>进入 /home 目录</p>
-                <div class="code-block">cd /home</div>
-                <p>创建子目录</p>
-                <div class="code-block">mkdir xzxdata</div>
-                <p>查看目录信息</p>
-                <div class="code-block">ls -ld xzxdata</div>
-                <div class="note">📸 此处需要截图显示目录创建结果</div>
+                <div class="code-block">cd /home
+mkdir xzxdata
+ls -ld xzxdata</div>
+                <div class="note"><span class="screenshot">【截图1】</span> 显示目录创建结果</div>
             </div>
 
-            <h3><span class="step-num">2</span>在 root 主目录创建 new.txt</h3>
+            <h3><span class="step-num">2</span>Root 目录下创建学号文件</h3>
             <div class="step">
-                <p>切换到 root 主目录</p>
-                <div class="code-block">cd /root</div>
-                <p>创建文件，内容为学号（注意单引号）</p>
-                <div class="code-block">echo '#2420601539' > new39.txt</div>
-                <p>查看文件内容</p>
-                <div class="code-block">cat new39.txt</div>
-                <div class="note">📸 此处需要截图显示文件内容</div>
+                <div class="code-block">cd /root
+echo '#2420601539' > new39.txt
+cat new39.txt</div>
+                <div class="note"><span class="screenshot">【截图2】</span> 显示文件内容</div>
             </div>
 
-            <h3><span class="step-num">3</span>复制并重命名文件</h3>
+            <h3><span class="step-num">3</span>复制并重命名</h3>
             <div class="step">
-                <p>将文件复制到 xzxdata 目录并重命名为 stu.txt</p>
-                <div class="code-block">cp /root/new39.txt /home/xzxdata/stu.txt</div>
-                <p>查看结果</p>
-                <div class="code-block">ls -l /home/xzxdata/</div>
-                <div class="note">📸 此处需要截图显示复制结果</div>
+                <div class="code-block">cp /root/new39.txt /home/xzxdata/stu.txt
+ls -l /home/xzxdata/</div>
+                <div class="note"><span class="screenshot">【截图3】</span> 显示复制结果</div>
             </div>
 
-            <h3><span class="step-num">4</span>编辑 stu.txt (Vim 操作)</h3>
+            <h3><span class="step-num">4</span>Vim 编辑 (12行复制)</h3>
             <div class="step">
                 <div class="code-block">vim /home/xzxdata/stu.txt</div>
-                <p><strong>Vim 操作步骤：</strong></p>
-                <ul style="margin-left: 20px;">
-                    <li>按 <code>G</code> (跳转到文件末尾)</li>
-                    <li>按 <code>o</code> (在下方插入新行)</li>
-                    <li>输入内容：<code>This is a linux test.</code></li>
-                    <li>按 <code>Esc</code> 退出插入模式</li>
-                    <li>按 <code>yy</code> (复制当前行)</li>
-                    <li>输入 <code>12p</code> (粘贴 12 次)</li>
-                    <li>输入 <code>:set nu</code> (显示行号)</li>
-                    <li>输入 <code>:wq</code> 保存并退出</li>
-                </ul>
-                <div class="note">📸 此处需要截图显示行号和重复的内容</div>
+                <p><strong>Vim 操作口诀：</strong></p>
+                <div class="code-block">G (跳到底部) 
+o (插入新行) 
+输入 This is a linux test.
+Esc (退出编辑) 
+yy (复制行) 
+12p (粘贴12次)
+:set nu (显示行号) 
+:wq (保存退出)</div>
+                <div class="note"><span class="screenshot">【截图4】</span> 显示行号和重复的内容</div>
             </div>
         </div>
 
@@ -101,37 +97,22 @@
         <div class="section" id="part2">
             <h2>第二部分：用户管理与查找</h2>
             
-            <h3><span class="step-num">5</span>创建 xzx 账户并切换</h3>
+            <h3><span class="step-num">5</span>创建 xzx 用户 (包含防坑修正)</h3>
             <div class="step">
-                <p>创建用户 xzx</p>
-                <div class="code-block">useradd xzx</div>
-                <p>设置密码 (输入两次)</p>
-                <div class="code-block">passwd xzx</div>
-                <p>切换到 xzx 账户</p>
-                <div class="code-block">su - xzx</div>
-                <p>查看当前身份</p>
-                <div class="code-block">whoami</div>
-                <p>退出 xzx 账户，返回 root</p>
+                <div class="code-block">useradd xzx
+passwd xzx  # 输入两次密码</div>
+                <div class="warning">⚠️ 【修正步骤】防止出现 "This account is currently not available"</div>
+                <div class="code-block">usermod -s /bin/bash xzx
+su - xzx
+whoami</div>
                 <div class="code-block">exit</div>
-                <p><strong>创建用户目录并设置权限：</strong></p>
-                <div class="code-block"># 1. 重新创建用户目录（因为新硬盘是空的）
-mkdir -p /home/xzx
-
-# 2. 【关键步骤】将目录的所有权交给 xzx 用户
-# 语法：chown 用户名:组名 目录路径
-chown xzx:xzx /home/xzx
-
-# 3. (可选) 设置只有用户自己能看，或者允许其他人读取
-# (为了FTP测试方便可以设为755)
-chmod 755 /home/xzx</div>
-                <div class="note">📸 此处需要截图显示用户切换</div>
+                <div class="note"><span class="screenshot">【截图5】</span> 显示用户切换成功</div>
             </div>
 
-            <h3><span class="step-num">6</span>Find 命令查找</h3>
+            <h3><span class="step-num">6</span>Find 查找命令</h3>
             <div class="step">
-                <p>查找 /etc 下大小为 0 的文件并显示详细信息</p>
                 <div class="code-block">find /etc -size 0 -exec ls -l {} \;</div>
-                <div class="note">📸 此处需要截图显示查找结果</div>
+                <div class="note"><span class="screenshot">【截图6】</span> 显示查找结果</div>
             </div>
         </div>
 
@@ -139,96 +120,105 @@ chmod 755 /home/xzx</div>
         <div class="section" id="part3">
             <h2>第三部分：磁盘管理</h2>
             
-            <h3><span class="step-num">7</span>分区 (fdisk)</h3>
+            <h3><span class="step-num">7</span>Fdisk 分区</h3>
             <div class="step">
-                <p>假设新硬盘为 <code>/dev/sdb</code>，分区大小需设置为 2039M。</p>
                 <div class="code-block">fdisk /dev/sdb</div>
-                <p><strong>交互输入序列：</strong></p>
+                <p><strong>交互顺序：</strong></p>
                 <div class="code-block">n -> p -> 1 -> 回车 -> +2039M
 n -> p -> 2 -> 回车 -> +2039M
 n -> p -> 3 -> 回车 -> +2039M
-w (保存退出)</div>
-                <p>检查分区：</p>
+w (保存)</div>
                 <div class="code-block">fdisk -l /dev/sdb</div>
-                <div class="note">📸 此处需要截图显示分区结果</div>
+                <div class="note"><span class="screenshot">【截图7】</span> 显示分区结果</div>
             </div>
 
             <h3><span class="step-num">8</span>格式化与挂载</h3>
             <div class="step">
-                <div class="warning">⚠️ 注意：挂载操作会覆盖原 /home，之前的 xzxdata 可能会暂时不可见，这是正常的。</div>
-                <p>格式化三个分区</p>
                 <div class="code-block">mkfs.xfs /dev/sdb1
 mkfs.xfs /dev/sdb2
 mkfs.xfs /dev/sdb3</div>
-                <p>将第二个分区挂载到 /home</p>
-                <div class="code-block">mount /dev/sdb2 /home</div>
-                <p>检查挂载状态</p>
-                <div class="code-block">df -hT | grep /home</div>
-                <div class="note">📸 此处需要截图显示挂载结果</div>
+                <div class="warning">⚠️ 挂载到 /home (这会暂时覆盖掉之前的目录，是正常的)</div>
+                <div class="code-block">mount /dev/sdb2 /home
+df -hT | grep /home</div>
+                <div class="note"><span class="screenshot">【截图8】</span> 显示挂载结果</div>
             </div>
         </div>
 
         <!-- 第四部分 -->
         <div class="section" id="part4">
-            <h2>第四部分：网络与 FTP 服务</h2>
+            <h2>第四部分：网络与 FTP 配置 (服务器端)</h2>
             
-            <h3><span class="step-num">9</span>服务器端启动服务</h3>
+            <h3><span class="step-num">9</span>启动服务与环境准备</h3>
             <div class="step">
-                <p>关闭防火墙</p>
                 <div class="code-block">systemctl stop firewalld</div>
-                <p>临时关闭 SELinux (关键步骤，否则可能无法上传)</p>
-                <div class="code-block">setenforce 0</div>
-                <p>启动 vsftpd 服务</p>
-                <div class="code-block">systemctl start vsftpd</div>
-                <p>查看 21 端口监听状态</p>
-                <div class="code-block">ss -antp | grep vsftpd</div>
-                <div class="note">📸 此处需要截图显示服务启动状态</div>
+                <div class="warning">⚠️ 【关键】关闭 SELinux，否则无法上传/下载</div>
+                <div class="code-block">setenforce 0
+systemctl start vsftpd
+ss -antp | grep vsftpd</div>
+                <div class="note"><span class="screenshot">【截图9】</span> 显示服务启动状态</div>
             </div>
 
-            <h3><span class="step-num">10</span>客户端主机名设置</h3>
+            <h3><span class="step-num">10</span>客户端主机名 (在第二台机器操作，或者跳过)</h3>
             <div class="step">
-                <div class="warning">⚠️ 注意：此步骤在第二台 Linux 虚拟机（客户端）上操作。</div>
-                <p>修改主机名为 stu39</p>
-                <div class="code-block">hostnamectl set-hostname stu39</div>
-                <p>重新登录终端使设置生效</p>
-                <div class="code-block">bash</div>
-                <p>验证主机名</p>
-                <div class="code-block">hostname</div>
-                <div class="note">📸 此处需要截图显示主机名</div>
+                <div class="code-block">hostnamectl set-hostname stu39
+bash
+hostname</div>
+                <div class="note"><span class="screenshot">【截图10】</span> 显示主机名</div>
             </div>
 
-            <h3><span class="step-num">11</span>匿名上传配置 (服务器端)</h3>
+            <h3><span class="step-num">11</span>配置匿名上传</h3>
             <div class="step">
-                <p>修改配置文件：</p>
                 <div class="code-block">vim /etc/vsftpd/vsftpd.conf</div>
-                <p>修改或添加以下内容（去掉注释 #）：</p>
+                <p><strong>修改/确认以下内容：</strong></p>
                 <div class="code-block">anonymous_enable=YES
 anon_upload_enable=YES
 anon_mkdir_write_enable=YES
 anon_other_write_enable=YES</div>
-                <p>保存退出。修改权限并重启：</p>
                 <div class="code-block">chmod 777 /var/ftp/pub
 systemctl restart vsftpd</div>
-                <p><strong>Windows 端测试：</strong></p>
-                <p>在 Windows 资源管理器地址栏输入 <code>ftp://&lt;服务器IP&gt;/</code>，进入 pub 目录，拖入文件上传。</p>
-                <div class="note">📸 此处需要截图显示上传结果</div>
+                <p><strong>Windows 测试：</strong> 资源管理器访问 <code>ftp://192.168.126.128</code>，拖入文件上传。</p>
+                <div class="note"><span class="screenshot">【截图11】</span> 显示上传结果</div>
+            </div>
+        </div>
+
+        <!-- 第五部分 -->
+        <div class="section" id="part5">
+            <h2>第五部分：本地用户下载测试 (最关键的一步)</h2>
+            <div class="warning">⚠️ 由于第8步挂载了新硬盘，/home/xzx 目录消失了。必须重建环境才能成功下载。</div>
+            
+            <h3><span class="step-num">1</span>重建 xzx 目录与数据 (Root执行)</h3>
+            <div class="step">
+                <div class="code-block"># 1. 在新硬盘中创建用户目录
+mkdir -p /home/xzx
+
+# 2. 【关键修正】修复权限 (只改用户，忽略组错误)
+chown -R xzx /home/xzx
+
+# 3. 【关键修正】将文件直接创建在 xzx 的家目录中 (不要放在 root)
+echo "Data for download test" > /home/xzx/download_test.txt
+
+# 4. 确认文件存在
+ls -l /home/xzx/download_test.txt</div>
             </div>
 
-            <h3><span class="step-num">12</span>本地账户下载测试</h3>
+            <h3><span class="step-num">2</span>执行 FTP 下载 (客户端执行)</h3>
             <div class="step">
-                <p><strong>A. 客户端下载操作 (在 stu 机器上)：</strong></p>
-                <div class="code-block"># 连接服务器 (假设 IP 为 192.168.x.x)
-ftp 192.168.x.x
-Name: xzx
-Password: (输入你设置的密码)</div>
-                <p>登录成功后执行：</p>
-                <div class="code-block">ls
+                <div class="code-block"># 切换到 xzx 身份（或者直接用 ftp 命令登录）
+su - xzx
+ftp 192.168.126.128</div>
+                <p><strong>FTP 交互：</strong></p>
+                <div class="code-block">Name: xzx
+Password: (你的密码)
+ls (必须能看到 download_test.txt)
 get download_test.txt
 bye</div>
-                <p>查看下载结果</p>
+            </div>
+
+            <h3><span class="step-num">3</span>验证结果</h3>
+            <div class="step">
                 <div class="code-block">ls -l download_test.txt
 cat download_test.txt</div>
-                <div class="note">📸 此处需要截图显示下载结果</div>
+                <div class="note"><span class="screenshot">【截图12】</span> 显示 Transfer complete 和文件内容</div>
             </div>
         </div>
 
